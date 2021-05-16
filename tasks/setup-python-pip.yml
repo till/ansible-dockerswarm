@@ -1,4 +1,18 @@
 ---
+- name: "Show env"
+  debug:
+    msg: |
+      Show Variables:
+      skip_docker_py: {{ skip_docker_py}}, skip_docker_compose: {{ skip_docker_compose }}
+
+      Test if #1
+      {{ (not skip_docker_py) }} - {{ (not skip_docker_compose) }}
+
+      Test if #2
+      {{ (not skip_docker_py) or (not skip_docker_compose) }}
+
+      Test if #3
+      {{ (ansible_os_family == 'RedHat' and ansible_distribution != 'Fedora') }}
 
 - name: Install epel-release
   package:
